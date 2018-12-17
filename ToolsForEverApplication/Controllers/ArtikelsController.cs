@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -10,19 +10,18 @@ using ToolsForEverApplication.Models;
 
 namespace ToolsForEverApplication.Controllers
 {
-    [Authorize(Roles = "Applicatiebeheerder, Manager, Binnen Medewerker, Buiten Medewerker")]
-    public class ArtikelController : Controller
+    public class ArtikelsController : Controller
     {
         private Entities db = new Entities();
 
-        // GET: Artikel
+        // GET: Artikels
         public ActionResult Index()
         {
-            var artikel = db.Artikel.Include(a => a.Fabriek);
+            var artikel = db.Artikel.Include(a => a.Fabriek).Include(a => a.Voorraad);
             return View(artikel.ToList());
         }
 
-        // GET: Artikel/Details/5
+        // GET: Artikels/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,14 +36,15 @@ namespace ToolsForEverApplication.Controllers
             return View(artikel);
         }
 
-        // GET: Artikel/Create
+        // GET: Artikels/Create
         public ActionResult Create()
         {
             ViewBag.Fabriekscode = new SelectList(db.Fabriek, "Fabriekscode", "Fabriek1");
+            ViewBag.Productcode = new SelectList(db.Voorraad, "Productcode", "Productcode");
             return View();
         }
 
-        // POST: Artikel/Create
+        // POST: Artikels/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -59,29 +59,11 @@ namespace ToolsForEverApplication.Controllers
             }
 
             ViewBag.Fabriekscode = new SelectList(db.Fabriek, "Fabriekscode", "Fabriek1", artikel.Fabriekscode);
+            ViewBag.Productcode = new SelectList(db.Voorraad, "Productcode", "Productcode", artikel.Productcode);
             return View(artikel);
         }
 
-        public ActionResult waardevoorraad()
-        {
-            List<Artikel> artikelen = db.Artikel.ToList();
-            double waardeinkoop;
-            double waardeverkoop;
-            foreach(var artikel in db.Artikel.ToList())
-            {
-                waardeinkoop =+  artikel.Inkoopprijs;
-                waardeverkoop =+ artikel.Verkoopprijs;
-
-                ViewBag.Inkoop = waardeinkoop;
-                ViewBag.Verkoop = waardeverkoop;
-            }
-
-            
-
-            return View();
-        }
-
-        // GET: Artikel/Edit/5
+        // GET: Artikels/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -94,10 +76,11 @@ namespace ToolsForEverApplication.Controllers
                 return HttpNotFound();
             }
             ViewBag.Fabriekscode = new SelectList(db.Fabriek, "Fabriekscode", "Fabriek1", artikel.Fabriekscode);
+            ViewBag.Productcode = new SelectList(db.Voorraad, "Productcode", "Productcode", artikel.Productcode);
             return View(artikel);
         }
 
-        // POST: Artikel/Edit/5
+        // POST: Artikels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -111,10 +94,11 @@ namespace ToolsForEverApplication.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Fabriekscode = new SelectList(db.Fabriek, "Fabriekscode", "Fabriek1", artikel.Fabriekscode);
+            ViewBag.Productcode = new SelectList(db.Voorraad, "Productcode", "Productcode", artikel.Productcode);
             return View(artikel);
         }
 
-        // GET: Artikel/Delete/5
+        // GET: Artikels/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -129,7 +113,7 @@ namespace ToolsForEverApplication.Controllers
             return View(artikel);
         }
 
-        // POST: Artikel/Delete/5
+        // POST: Artikels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

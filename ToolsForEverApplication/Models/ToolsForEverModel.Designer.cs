@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Luuk Hamming\Desktop\ToolsForEverApplication\ToolsForEverApplication\ToolsForEverApplication\Models\ToolsForEverModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Luuk Hamming\Desktop\ToolsForEver\Versie 1.00\Bronbestanden\ToolsForEverApplication\ToolsForEverApplication\Models\ToolsForEverModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

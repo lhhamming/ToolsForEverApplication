@@ -6,23 +6,23 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d450038eefb14c849e39519209a1343c" Name="Diagram1">
         <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Artikel" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Fabriek" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Locatie" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK__Artikel__Fabriek__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.Medewerkers" Width="1.5" PointX="7.625" PointY="3.75" />
         <AssociationConnector Association="Model.FK_AspNetUserID" />
         <EntityTypeShape EntityType="Model.Voorraad" Width="1.5" PointX="5.25" PointY="8.5" />
-        <AssociationConnector Association="Model.FK__Voorraad__Produc__3D5E1FD2" />
         <AssociationConnector Association="Model.FK__Voorraad__Locati__3C69FB99" />
-      </Diagram>
+        <EntityTypeShape EntityType="Model.Artikel" Width="1.5" PointX="3" PointY="6.625" />
+        <AssociationConnector Association="Model.FK__Artikel__Fabriek__3A81B327" />
+        <AssociationConnector Association="Model.FK__Voorraad__Produc__3D5E1FD2" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

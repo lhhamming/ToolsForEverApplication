@@ -25,6 +25,7 @@
           <Property Name="Fabriekscode" Type="int" Nullable="false" />
           <Property Name="Inkoopprijs" Type="float" Nullable="false" />
           <Property Name="Verkoopprijs" Type="float" Nullable="false" />
+          <Property Name="Actief" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -276,19 +277,6 @@
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Artikel">
-          <Key>
-            <PropertyRef Name="Productcode" />
-          </Key>
-          <Property Name="Productcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Product" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Fabriekscode" Type="Int32" Nullable="false" />
-          <Property Name="Inkoopprijs" Type="Double" Nullable="false" />
-          <Property Name="Verkoopprijs" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Fabriek" Relationship="Self.FK__Artikel__Fabriek__3A81B327" FromRole="Artikel" ToRole="Fabriek" />
-          <NavigationProperty Name="Voorraad" Relationship="Model.FK__Voorraad__Produc__3D5E1FD2" FromRole="Artikel" ToRole="Voorraad" />
-        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -346,7 +334,7 @@
           <Property Name="Fabriekscode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fabriek1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Telefoon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Artikel" Relationship="Self.FK__Artikel__Fabriek__3A81B327" FromRole="Fabriek" ToRole="Artikel" />
+          <NavigationProperty Name="Artikel" Relationship="Model.FK__Artikel__Fabriek__3A81B327" FromRole="Fabriek" ToRole="Artikel" />
         </EntityType>
         <EntityType Name="Locatie">
           <Key>
@@ -356,18 +344,6 @@
           <Property Name="Locatie1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Voorraad" Relationship="Model.FK__Voorraad__Locati__3C69FB99" FromRole="Locatie" ToRole="Voorraad" />
         </EntityType>
-        <Association Name="FK__Artikel__Fabriek__3A81B327">
-          <End Role="Fabriek" Type="Self.Fabriek" Multiplicity="1" />
-          <End Role="Artikel" Type="Self.Artikel" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fabriek">
-              <PropertyRef Name="Fabriekscode" />
-            </Principal>
-            <Dependent Role="Artikel">
-              <PropertyRef Name="Fabriekscode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -402,17 +378,12 @@
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="Artikel" EntityType="Self.Artikel" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="Fabriek" EntityType="Self.Fabriek" />
           <EntitySet Name="Locatie" EntityType="Self.Locatie" />
-          <AssociationSet Name="FK__Artikel__Fabriek__3A81B327" Association="Self.FK__Artikel__Fabriek__3A81B327">
-            <End Role="Fabriek" EntitySet="Fabriek" />
-            <End Role="Artikel" EntitySet="Artikel" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -431,12 +402,17 @@
             <End Role="Medewerkers" EntitySet="Medewerkers" />
           </AssociationSet>
           <EntitySet Name="Voorraad" EntityType="Model.Voorraad" />
-          <AssociationSet Name="FK__Voorraad__Produc__3D5E1FD2" Association="Model.FK__Voorraad__Produc__3D5E1FD2">
-            <End Role="Artikel" EntitySet="Artikel" />
-            <End Role="Voorraad" EntitySet="Voorraad" />
-          </AssociationSet>
           <AssociationSet Name="FK__Voorraad__Locati__3C69FB99" Association="Model.FK__Voorraad__Locati__3C69FB99">
             <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Voorraad" EntitySet="Voorraad" />
+          </AssociationSet>
+          <EntitySet Name="Artikel" EntityType="Model.Artikel" />
+          <AssociationSet Name="FK__Artikel__Fabriek__3A81B327" Association="Model.FK__Artikel__Fabriek__3A81B327">
+            <End Role="Fabriek" EntitySet="Fabriek" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Voorraad__Produc__3D5E1FD2" Association="Model.FK__Voorraad__Produc__3D5E1FD2">
+            <End Role="Artikel" EntitySet="Artikel" />
             <End Role="Voorraad" EntitySet="Voorraad" />
           </AssociationSet>
         </EntityContainer>
@@ -473,21 +449,9 @@
           <Property Name="Locatiecode" Type="Int32" Nullable="false" />
           <Property Name="Productcode" Type="Int32" Nullable="false" />
           <Property Name="Aantal" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Artikel" Relationship="Model.FK__Voorraad__Produc__3D5E1FD2" FromRole="Voorraad" ToRole="Artikel" />
           <NavigationProperty Name="Locatie" Relationship="Model.FK__Voorraad__Locati__3C69FB99" FromRole="Voorraad" ToRole="Locatie" />
+          <NavigationProperty Name="Artikel" Relationship="Model.FK__Voorraad__Produc__3D5E1FD2" FromRole="Voorraad" ToRole="Artikel" />
         </EntityType>
-        <Association Name="FK__Voorraad__Produc__3D5E1FD2">
-          <End Type="Model.Artikel" Role="Artikel" Multiplicity="1" />
-          <End Type="Model.Voorraad" Role="Voorraad" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Artikel">
-              <PropertyRef Name="Productcode" />
-            </Principal>
-            <Dependent Role="Voorraad">
-              <PropertyRef Name="Productcode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Voorraad__Locati__3C69FB99">
           <End Type="Model.Locatie" Role="Locatie" Multiplicity="1" />
           <End Type="Model.Voorraad" Role="Voorraad" Multiplicity="*" />
@@ -497,6 +461,44 @@
             </Principal>
             <Dependent Role="Voorraad">
               <PropertyRef Name="Locatiecode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Artikel">
+          <Key>
+            <PropertyRef Name="Productcode" />
+          </Key>
+          <Property Name="Productcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PType" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Fabriekscode" Type="Int32" Nullable="false" />
+          <Property Name="Inkoopprijs" Type="Double" Nullable="false" />
+          <Property Name="Verkoopprijs" Type="Double" Nullable="false" />
+          <Property Name="Actief" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Fabriek" Relationship="Model.FK__Artikel__Fabriek__3A81B327" FromRole="Artikel" ToRole="Fabriek" />
+          <NavigationProperty Name="Voorraad" Relationship="Model.FK__Voorraad__Produc__3D5E1FD2" FromRole="Artikel" ToRole="Voorraad" />
+        </EntityType>
+        <Association Name="FK__Artikel__Fabriek__3A81B327">
+          <End Type="Model.Fabriek" Role="Fabriek" Multiplicity="1" />
+          <End Type="Model.Artikel" Role="Artikel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fabriek">
+              <PropertyRef Name="Fabriekscode" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="Fabriekscode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Voorraad__Produc__3D5E1FD2">
+          <End Type="Model.Artikel" Role="Artikel" Multiplicity="1" />
+          <End Type="Model.Voorraad" Role="Voorraad" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Artikel">
+              <PropertyRef Name="Productcode" />
+            </Principal>
+            <Dependent Role="Voorraad">
+              <PropertyRef Name="Productcode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -513,18 +515,6 @@
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Artikel">
-            <EntityTypeMapping TypeName="Model.Artikel">
-              <MappingFragment StoreEntitySet="Artikel">
-                <ScalarProperty Name="Productcode" ColumnName="Productcode" />
-                <ScalarProperty Name="Product" ColumnName="Product" />
-                <ScalarProperty Name="PType" ColumnName="PType" />
-                <ScalarProperty Name="Fabriekscode" ColumnName="Fabriekscode" />
-                <ScalarProperty Name="Inkoopprijs" ColumnName="Inkoopprijs" />
-                <ScalarProperty Name="Verkoopprijs" ColumnName="Verkoopprijs" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -618,6 +608,19 @@
                 <ScalarProperty Name="Aantal" ColumnName="Aantal" />
                 <ScalarProperty Name="Productcode" ColumnName="Productcode" />
                 <ScalarProperty Name="Locatiecode" ColumnName="Locatiecode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artikel">
+            <EntityTypeMapping TypeName="Model.Artikel">
+              <MappingFragment StoreEntitySet="Artikel">
+                <ScalarProperty Name="Actief" ColumnName="Actief" />
+                <ScalarProperty Name="Verkoopprijs" ColumnName="Verkoopprijs" />
+                <ScalarProperty Name="Inkoopprijs" ColumnName="Inkoopprijs" />
+                <ScalarProperty Name="Fabriekscode" ColumnName="Fabriekscode" />
+                <ScalarProperty Name="PType" ColumnName="PType" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Productcode" ColumnName="Productcode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

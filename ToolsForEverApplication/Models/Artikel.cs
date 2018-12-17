@@ -20,6 +20,7 @@ namespace ToolsForEverApplication.Models
         public int Fabriekscode { get; set; }
         public double Inkoopprijs { get; set; }
         public double Verkoopprijs { get; set; }
+        public bool Actief { get; set; }
     
         public virtual Fabriek Fabriek { get; set; }
         public virtual Voorraad Voorraad { get; set; }

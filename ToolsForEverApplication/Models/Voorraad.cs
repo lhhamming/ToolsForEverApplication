@@ -18,7 +18,7 @@ namespace ToolsForEverApplication.Models
         public int Productcode { get; set; }
         public int Aantal { get; set; }
     
-        public virtual Artikel Artikel { get; set; }
         public virtual Locatie Locatie { get; set; }
+        public virtual Artikel Artikel { get; set; }
     }
 }

@@ -26,7 +26,6 @@ namespace ToolsForEverApplication.Models
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<Artikel> Artikel { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
@@ -35,5 +34,6 @@ namespace ToolsForEverApplication.Models
         public virtual DbSet<Locatie> Locatie { get; set; }
         public virtual DbSet<Medewerkers> Medewerkers { get; set; }
         public virtual DbSet<Voorraad> Voorraad { get; set; }
+        public virtual DbSet<Artikel> Artikel { get; set; }
     }
 }
