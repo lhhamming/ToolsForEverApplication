@@ -1,0 +1,58 @@
+﻿@model ToolsForEverApplication.Models.Medewerkers
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Medewerkers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Voorletters)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voorletters)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voorvoegsels)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voorvoegsels)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Achternaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Achternaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gebruikersnaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gebruikersnaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Medewerkerscode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

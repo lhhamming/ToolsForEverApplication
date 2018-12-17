@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ToolsForEverApplication.Models.Fabriek>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fabriek1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefoon)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fabriek1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefoon)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Fabriekscode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Fabriekscode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Fabriekscode })
+        </td>
+    </tr>
+}
+
+</table>

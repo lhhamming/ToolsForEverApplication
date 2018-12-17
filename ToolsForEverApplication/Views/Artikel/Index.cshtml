@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ToolsForEverApplication.Models.Artikel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Inkoopprijs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Verkoopprijs)
+        </th>
+        <th>
+            Fabriek
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inkoopprijs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Verkoopprijs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fabriek.Fabriek1)
+        </td>
+        <td><button class="btn-default">
+    @Html.ActionLink("Voorraad bijvoegen", "Edit", new { id = item.Productcode })
+            </button>
+        </td>
+    </tr>
+}
+
+</table>
