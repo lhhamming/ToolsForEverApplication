@@ -361,12 +361,6 @@
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Link.cshtml" />
-    <Content Include="Views\Artikel\Create.cshtml" />
-    <Content Include="Views\Artikel\Delete.cshtml" />
-    <Content Include="Views\Artikel\Details.cshtml" />
-    <Content Include="Views\Artikel\Edit.cshtml" />
-    <Content Include="Views\Artikel\Index.cshtml" />
-    <Content Include="Views\Artikel\waardevoorraad.cshtml" />
     <Content Include="Views\Artikels\Create.cshtml" />
     <Content Include="Views\Artikels\Delete.cshtml" />
     <Content Include="Views\Artikels\Details.cshtml" />
